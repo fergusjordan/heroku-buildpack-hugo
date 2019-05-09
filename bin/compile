@@ -24,8 +24,14 @@ else
   export HUGO_VERSION=$DEFAULT_HUGO_VERSION
 fi
 
+if [ -d "$ENV_DIR" -a -e "$ENV_DIR/HUGO_EXTENDED" ]; then
+  export HUGO_EXTENDED="extended_"
+else
+  export HUGO_VERSION=""
+fi
+
 # Hugo URL ( download from GH builds )
-RELEASE_NAME=hugo_${HUGO_VERSION}_Linux-64bit
+RELEASE_NAME=hugo_${HUGO_EXTENDED}${HUGO_VERSION}_Linux-64bit
 FILE_NAME=${RELEASE_NAME}.tar.gz
 HUGO_PACKAGE=https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${FILE_NAME}
 
